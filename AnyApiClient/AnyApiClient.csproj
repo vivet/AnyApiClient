@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Michael Vivet</Authors>
+    <Company>Michael Vivet</Company>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>latest</LangVersion>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
+    <Version>1.0.0.0</Version>
+    <Product>Any Api Client</Product>
+    <Summary>Simple api-Client.</Summary>
+    <Description>Create a request and reponse models, decorate with verbs, and implement a method in a class deriving from BaseApiClient, allowing for easy invocations of requests and handling of responses.</Description>
+    <PackageTags>api, api-client, rest, http, https</PackageTags>
+    <PackageReleaseNotes>- Initial.</PackageReleaseNotes>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <RepositoryType>Github</RepositoryType>
+    <RepositoryUrl>https://github.com/vivet/ApiClient.git</RepositoryUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://github.com/vivet/ApiClient</PackageProjectUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+	<WarningsAsErrors />
+	<NoWarn />
+	<TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+	<DocumentationFile>$(MSBuildThisFileDirectory)\bin\$(Configuration)\ApiClient.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+	  <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+	  <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE.txt" Pack="true" PackagePath="LICENSE.txt" />
+  </ItemGroup>
+</Project>
