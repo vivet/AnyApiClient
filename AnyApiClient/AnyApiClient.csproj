@@ -7,9 +7,9 @@
     <Company>Michael Vivet</Company>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <LangVersion>latest</LangVersion>
-    <AssemblyVersion>1.0.0.0</AssemblyVersion>
-    <FileVersion>1.1.0.0</FileVersion>
-    <Version>1.0.0.0</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.0.1.0</Version>
     <Product>Any Api Client</Product>
     <Summary>Simple api-Client.</Summary>
     <Description>Create a request and reponse models, decorate with verbs, and implement a method in a class deriving from BaseApiClient, allowing for easy invocations of requests and handling of responses.</Description>
