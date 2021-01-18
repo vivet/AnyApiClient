@@ -201,6 +201,7 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
             using var formContent = new MultipartFormDataContent();
+            formContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
             foreach (var x in request.GetForm())
             {
@@ -214,7 +215,7 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(value.Extension);
 
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
@@ -251,6 +252,7 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
             using var formContent = new MultipartFormDataContent();
+            formContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
             foreach (var x in request.GetForm())
             {
@@ -264,7 +266,7 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(value.Extension);
 
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
