@@ -215,7 +215,7 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(value.Extension);
+                    //fileContent.Headers.ContentType = new MediaTypeHeaderValue(value.Extension);
 
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
@@ -266,7 +266,7 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    fileContent.Headers.ContentType = new MediaTypeHeaderValue($"application/{value.Extension.Replace(".", string.Empty)}");
+                    //fileContent.Headers.ContentType = new MediaTypeHeaderValue($"application/{value.Extension.Replace(".", string.Empty)}");
 
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
