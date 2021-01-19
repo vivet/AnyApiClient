@@ -21,6 +21,11 @@
         public const string HTML = "text/html";
 
         /// <summary>
+        /// Xhtml ("text/xhtml").
+        /// </summary>
+        public const string XHTML = "text/xhtml";
+
+        /// <summary>
         /// Text ("text/plain").
         /// </summary>
         public const string TEXT = "text/plain";
@@ -31,12 +36,12 @@
         public const string PDF = "application/pdf";
 
         /// <summary>
-        /// Pdf ("application/pdf").
+        /// Pdf ("application/zip").
         /// </summary>
         public const string ZIP = "application/zip";
 
         /// <summary>
-        /// Form ("application/x-www-form-urlencoded").
+        /// Form ("multipart/form-data").
         /// </summary>
         public const string FORM = "multipart/form-data";
 

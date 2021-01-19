@@ -49,11 +49,10 @@ namespace AnyApiClient
             this.httpClient = new HttpClient(this.httpClientHandler)
             {
                 Timeout = new TimeSpan(0, 0, this.apiOptions.TimeoutInSeconds)
-                // TODO: DefaultRequestVersion = new Version(2, 0)
             };
 
             this.httpClient.DefaultRequestHeaders.Accept
-                .Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                .Add(new MediaTypeWithQualityHeaderValue(HttpContentType.JSON));
 
             this.jsonSerializerSettings.Converters
                 .Add(new StringEnumConverter());
@@ -201,7 +200,6 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
             using var formContent = new MultipartFormDataContent();
-            formContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
             foreach (var x in request.GetForm())
             {
@@ -215,8 +213,8 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    //fileContent.Headers.ContentType = new MediaTypeHeaderValue(value.Extension);
-
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(HttpContentType.FORM);
+                    
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
                 }
@@ -252,7 +250,6 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
             using var formContent = new MultipartFormDataContent();
-            formContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
 
             foreach (var x in request.GetForm())
             {
@@ -266,7 +263,7 @@ namespace AnyApiClient
 
                     var bytes = File.ReadAllBytes(filename);
                     var fileContent = new ByteArrayContent(bytes);
-                    //fileContent.Headers.ContentType = new MediaTypeHeaderValue($"application/{value.Extension.Replace(".", string.Empty)}");
+                    fileContent.Headers.ContentType = new MediaTypeHeaderValue(HttpContentType.FORM);
 
                     formContent
                         .Add(fileContent, "file", Path.GetFileName(filename));
