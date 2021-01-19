@@ -21,7 +21,7 @@ namespace AnyApiClient
     /// <summary>
     /// Base Api (abstract).
     /// </summary>
-    public abstract class BaseApiClient
+    public abstract class BaseApiClient : IDisposable
     {
         private readonly ApiOptions apiOptions;
         private readonly HttpClient httpClient;
@@ -75,7 +75,7 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
 
-            using var httpResponse = await this.httpClient
+            var httpResponse = await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
 
             return await this.GetReponse<TResponse>(httpResponse, cancellationToken);
@@ -101,7 +101,7 @@ namespace AnyApiClient
 
             httpRequest.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
-            using var httpResponse = await this.httpClient
+            await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
         }
 
@@ -127,7 +127,7 @@ namespace AnyApiClient
 
             httpRequest.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
-            using var httpResponse = await this.httpClient
+            var httpResponse = await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
 
             return await this.GetReponse<TResponse>(httpResponse, cancellationToken);
@@ -153,7 +153,7 @@ namespace AnyApiClient
 
             httpRequest.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
-            using var httpResponse = await this.httpClient
+            await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
         }
 
@@ -179,7 +179,7 @@ namespace AnyApiClient
 
             httpRequest.Content = new StringContent(content, Encoding.UTF8, "application/json");
 
-            using var httpResponse = await this.httpClient
+            var httpResponse = await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
 
             return await this.GetReponse<TResponse>(httpResponse, cancellationToken);
@@ -229,7 +229,7 @@ namespace AnyApiClient
 
             httpRequest.Content = formContent;
 
-            using var httpResponse = await this.httpClient
+            await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
         }
 
@@ -279,7 +279,7 @@ namespace AnyApiClient
 
             httpRequest.Content = formContent;
 
-            using var httpResponse = await this.httpClient
+            var httpResponse = await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
 
             return await this.GetReponse<TResponse>(httpResponse, cancellationToken);
@@ -300,7 +300,7 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
 
-            using var httpResponse = await this.httpClient
+            await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
         }
 
@@ -321,7 +321,7 @@ namespace AnyApiClient
 
             using var httpRequest = this.GetHttpRequest(request);
 
-            using var httpResponse = await this.httpClient
+            var httpResponse = await this.httpClient
                 .SendAsync(httpRequest, cancellationToken);
 
             return await this.GetReponse<TResponse>(httpResponse, cancellationToken);
@@ -432,6 +432,16 @@ namespace AnyApiClient
                 default:
                     throw new NotSupportedException(contentType);
             }
+        }
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            this.httpClient?
+                .Dispose();
+            
+            this.httpClientHandler?
+                .Dispose();
         }
     }
 }
